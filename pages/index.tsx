@@ -29,16 +29,20 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
       </Head>
       <Box>
         <VStack spacing={[16, 16, 16, 16]} align="center" as="main">
-          <Table variant="simple">
-            <TableCaption>Top Js Libraries</TableCaption>
-            <Thead>
-              <Tr>
-                <Th>Name</Th>
-                <Th>Occurences</Th>
-              </Tr>
-            </Thead>
-            <Tbody>{web.result.map((library) => renderTableRow(library))}</Tbody>
-          </Table>
+          {web.error ? (
+            <p>{web.result}</p>
+          ) : (
+            <Table variant="simple">
+              <TableCaption>Top Js Libraries</TableCaption>
+              <Thead>
+                <Tr>
+                  <Th>Name</Th>
+                  <Th>Occurences</Th>
+                </Tr>
+              </Thead>
+              <Tbody>{web.result.map((library) => renderTableRow(library))}</Tbody>
+            </Table>
+          )}
         </VStack>
       </Box>
     </div>
